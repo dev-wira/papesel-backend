@@ -13,7 +13,6 @@ const {
   getMyClients,
 } = require("../controllers/user.controller");
 const { asyncHandler } = require("../utils/asyncHandler");
-const { requireAuth } = require("@clerk/express");
 const { userAuth } = require("../middlewares/userAuth");
 const { requireRole } = require("../middlewares/requireRole");
 
