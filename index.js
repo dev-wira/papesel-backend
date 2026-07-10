@@ -2,6 +2,9 @@ require("dotenv").config();
 const connectDB = require("./src/configs/mongodb");
 const app = require("./src/app");
 
+const dns = require("dns");
+dns.setDefaultResultOrder("ipv4first");
+
 (async () => {
   try {
     console.log(process.env.MONGODB_URI);
