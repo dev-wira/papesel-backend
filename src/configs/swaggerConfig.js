@@ -10,7 +10,7 @@ const options = {
       title: "Papesel API",
       version: "1.0.0",
       description:
-        "API for Papesel — a requirement-versioning SaaS for freelancers and clients",
+        "API for Papesel — a requirement-versioning SaaS for freelancers and clients . readme recomended -> https://github.com/dev-wira/papesel-backend/blob/main/README.md",
     },
     servers: [
       {
