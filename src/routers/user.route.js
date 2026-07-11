@@ -62,9 +62,9 @@ router.post("/signup", asyncHandler(signUp));
  *               email:
  *                 type: string
  *                 example: rahul@example.com
- *               otp:
+ *               code:
  *                 type: string
- *                 example: "123456"
+ *                 example: "12345"
  *     responses:
  *       200:
  *         description: User verified, auth cookie set
