@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const landingPage = require("./views/landing");
 
 const cookieParser = require("cookie-parser");
 
@@ -14,12 +15,12 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.get("/", (req, res) => {
+  res.send(landingPage);
+});
 // Routes
 app.use("/user", userRouter);
 app.use("/project", projectRouter);
-app.get("/", (req, res) => {
-  res.send("application running...");
-});
 
 // Error Handler (must be last)
 app.use(errorHandler);
