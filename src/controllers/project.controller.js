@@ -43,7 +43,12 @@ const getProjects = async (req, res) => {
 const addRequirement = async (req, res) => {
   addRequirementValidation(req.body);
   const { project, title, description } = req.body;
-  const requirement = await add_requirement(project, title, description);
+  const requirement = await add_requirement(
+    project,
+    title,
+    description,
+    req.user._id,
+  );
   return success(res, 201, "requirement added..", {
     _id: requirement._id,
   });
@@ -52,7 +57,12 @@ const updateRequirement = async (req, res) => {
   updateRequirementValidation(req.body);
   const { requirement } = req.params;
   const { title, description } = req.body;
-  const updated = await update_requirement(requirement, title, description);
+  const updated = await update_requirement(
+    requirement,
+    title,
+    description,
+    req.user._id,
+  );
   return success(res, 200, "requirement updated..", {
     _id: updated._id,
     title: updated.title,
@@ -61,7 +71,7 @@ const updateRequirement = async (req, res) => {
 const getRequirements = async (req, res) => {
   const { project } = req.params;
   validateId(project, "invalid project !!");
-  const requirements = await get_requirements(project);
+  const requirements = await get_requirements(project, req.user._id);
   return success(res, 200, "requirements fetched", {
     requirements,
   });
@@ -69,7 +79,7 @@ const getRequirements = async (req, res) => {
 const getRequirementVersions = async (req, res) => {
   const { requirement } = req.params;
   validateId(requirement, "invalid requirement !!");
-  const versions = await get_requirement_versions(requirement);
+  const versions = await get_requirement_versions(requirement, req.user._id);
   return success(res, 200, "requirement versions fetched", {
     versions,
   });
@@ -79,7 +89,7 @@ const reviewRequirement = async (req, res) => {
   reviewRequirementValidation(req);
   const { requirement } = req.params;
   const { status } = req.body;
-  const reviewed = await review_requirement(requirement, status);
+  const reviewed = await review_requirement(requirement, status, req.user._id);
   return success(res, 200, "requirement reviewed", {
     _id: reviewed._id,
     title: reviewed.title,
@@ -90,7 +100,7 @@ const reviewRequirement = async (req, res) => {
 const getPendingRequirements = async (req, res) => {
   const { project } = req.params;
   validateId(project, "invalid project !!");
-  const requirements = await get_pending_requirements(project);
+  const requirements = await get_pending_requirements(project, req.user._id);
   return success(res, 200, "pending requirements fetched", {
     requirements,
   });
