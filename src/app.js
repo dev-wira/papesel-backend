@@ -9,6 +9,14 @@ const userRouter = require("./routers/user.route");
 const projectRouter = require("./routers/project.route");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./configs/swaggerConfig");
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
