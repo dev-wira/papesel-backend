@@ -54,7 +54,7 @@ const createClient = async (req, res) => {
 };
 
 const resendOTP = async (req, res) => {
-  const email = req.body.email;
+  const email = req.query.email;
   verifyEmail(email);
   const { message } = await resend_otp(email);
   return success(res, 200, message);
